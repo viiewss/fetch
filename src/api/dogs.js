@@ -1,15 +1,14 @@
-import axios from 'axios';
-
-const API_BASE_URL = 'https://frontend-take-home-service.fetch.com';
-
-const api = axios.create({
-  baseURL: API_BASE_URL,
-  withCredentials: true,
-});
+// remove API_BASE_URL entirely—just hit /dogs/* relative paths
 
 export const getBreeds = async () => {
-  const response = await api.get('/dogs/breeds');
-  return response.data;
+  console.log('Fetching breeds');
+  const res = await fetch('/dogs/breeds', {
+    method: 'GET',
+    credentials: 'include',
+    headers: { Accept: 'application/json' },
+  });
+  if (!res.ok) throw new Error(`Status ${res.status}`);
+  return res.json();
 };
 
 export const searchDogs = async ({
@@ -18,18 +17,42 @@ export const searchDogs = async ({
   from = 0,
   sort = 'breed:asc',
 }) => {
-  const params = { size, from, sort };
-  if (breeds.length) params.breeds = breeds;
-  const response = await api.get('/dogs/search', { params });
-  return response.data;
+  const params = new URLSearchParams({ size, from, sort });
+  if (breeds.length) params.append('breeds', breeds.join(','));
+  console.log('Searching dogs with', params.toString());
+  const res = await fetch(`/dogs/search?${params}`, {
+    method: 'GET',
+    credentials: 'include',
+    headers: { Accept: 'application/json' },
+  });
+  if (!res.ok) throw new Error(`Status ${res.status}`);
+  return res.json();
 };
 
 export const getDogs = async (ids) => {
-  const response = await api.post('/dogs', ids);
-  return response.data;
+  const res = await fetch('/dogs', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(ids),
+  });
+  if (!res.ok) throw new Error(`Status ${res.status}`);
+  return res.json();
 };
 
 export const getMatch = async (ids) => {
-  const response = await api.post('/dogs/match', ids);
-  return response.data;
+  const res = await fetch('/dogs/match', {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify(ids),
+  });
+  if (!res.ok) throw new Error(`Status ${res.status}`);
+  return res.json();
 };
