@@ -7,7 +7,7 @@ interface DogCardProps {
   onToggle: (id: string) => void;
 }
 
-export default function DogCard({ dog, isFavorite, onToggle }: DogCardProps) {
+function DogCard({ dog, isFavorite, onToggle }: DogCardProps) {
   return (
     <div className="border p-4 rounded relative overflow-hidden bg-white">
       <div className="w-full h-48 bg-gray-100 flex items-center justify-center">
@@ -37,5 +37,10 @@ export default function DogCard({ dog, isFavorite, onToggle }: DogCardProps) {
     </div>
   );
 }
+
+export default React.memo(DogCard, (prev, next) => 
+  prev.dog.id === next.dog.id && prev.isFavorite === next.isFavorite
+);
+
 
 
