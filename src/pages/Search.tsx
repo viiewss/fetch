@@ -38,7 +38,13 @@ const Search: React.FC = () => {
   const [error, setError] = useState<string>('');
 
   // Favorites and match state
-  const [favorites, setFavorites] = useState<string[]>(() => JSON.parse(localStorage.getItem('favorites') || '[]'));
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    try {
+      return JSON.parse(localStorage.getItem('favorites') || '[]');
+    } catch {
+      return [];
+    }
+  });
   const [matchedDog, setMatchedDog] = useState<Dog | null>(null);
 
   // Persist favorites
