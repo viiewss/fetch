@@ -21,8 +21,14 @@ const Search: React.FC = () => {
 
   // Debounced filters
   const debouncedBreeds = useDebounce(filterBreeds, 500);
-  const debouncedMinAge = useDebounce(minAge ? Number(minAge) : undefined, 500);
-  const debouncedMaxAge = useDebounce(maxAge ? Number(maxAge) : undefined, 500);
+  const debouncedMinAge = useDebounce(
+    minAge !== '' ? Number(minAge) : undefined,
+    500
+  );
+  const debouncedMaxAge = useDebounce(
+    maxAge !== '' ? Number(maxAge) : undefined,
+    500
+  );
 
   // Results state
   const [dogs, setDogs] = useState<Dog[]>([]);
