@@ -28,3 +28,9 @@ A React web app for searching shelter dogs, built for the Fetch Frontend Take-Ho
    npm run build
    ```
    The optimized output will be in the `dist` directory.
+
+5. Run tests:
+   ```bash
+   npm test
+   ```
+   This will execute Jest unit tests using React Testing Library.
