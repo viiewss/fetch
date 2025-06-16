@@ -41,3 +41,6 @@ To publish the production build to GitHub Pages run:
 npm run deploy
 ```
 This script builds the app and pushes the `dist` directory to the `gh-pages` branch. The site will be available at `https://<your-github-username>.github.io/fetch/`.
+
+### Browser note
+If you visit the app at [https://viiewss.github.io/fetch/](https://viiewss.github.io/fetch/), Chrome may block the authentication cookie. Enable third-party cookies in Chrome (or allow them for this site) so the login token can be stored.
