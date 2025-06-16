@@ -1,4 +1,4 @@
-// src/components/Search.tsx
+// src/pages/Search.tsx
 import React, { useState, useEffect, ChangeEvent, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Dog, SearchOptions, SearchResponse, MatchResponse } from '../types';
