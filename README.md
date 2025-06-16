@@ -34,3 +34,10 @@ A React web app for searching shelter dogs, built for the Fetch Frontend Take-Ho
    npm test
    ```
    This will execute Jest unit tests using React Testing Library.
+
+## Deploying to GitHub Pages
+To publish the production build to GitHub Pages run:
+```bash
+npm run deploy
+```
+This script builds the app and pushes the `dist` directory to the `gh-pages` branch. The site will be available at `https://<your-github-username>.github.io/fetch/`.
