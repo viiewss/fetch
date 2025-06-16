@@ -1,6 +1,7 @@
 // src/pages/Login.tsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE } from '../api/config';
 
 function Login() {
   const [name, setName] = useState('');
@@ -12,7 +13,7 @@ function Login() {
     e.preventDefault();
     setError('');
     try {
-      const response = await fetch('/auth/login', {
+      const response = await fetch(`${API_BASE}/auth/login`, {
         method: 'POST',
         credentials: 'include',
         headers: {

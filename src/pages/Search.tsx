@@ -1,6 +1,7 @@
 // src/pages/Search.tsx
 import React, { useState, useEffect, ChangeEvent, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE } from '../api/config';
 import type { Dog, SearchOptions, SearchResponse, MatchResponse } from '../types';
 import { getBreeds, searchDogs, getDogs, getMatch } from '../api/dogs';
 import DogCard from '../components/DogCard';
@@ -56,7 +57,7 @@ const Search: React.FC = () => {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch('/dogs/breeds', { credentials: 'include' });
+        const res = await fetch(`${API_BASE}/dogs/breeds`, { credentials: 'include' });
         if (!res.ok) return navigate('/', { replace: true });
         setBreeds(await res.json());
       } catch {
@@ -126,7 +127,7 @@ const Search: React.FC = () => {
   }, []);
 
   const logout = useCallback(async () => {
-    await fetch('/auth/logout', { method: 'POST', credentials: 'include' });
+    await fetch(`${API_BASE}/auth/logout`, { method: 'POST', credentials: 'include' });
     navigate('/', { replace: true });
   }, [navigate]);
 

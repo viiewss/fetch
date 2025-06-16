@@ -1,12 +1,13 @@
 // src/api/dogs.ts
 import type { Dog, SearchOptions, SearchResponse, MatchResponse } from '../types';
+import { API_BASE } from './config';
 
 /**
  * Fetches all breeds.
  * @returns {Promise<string[]>}
  */
 export async function getBreeds(): Promise<string[]> {
-  const res = await fetch('/dogs/breeds', {
+  const res = await fetch(`${API_BASE}/dogs/breeds`, {
     method: 'GET',
     credentials: 'include',
     headers: { Accept: 'application/json' },
@@ -44,7 +45,7 @@ export async function searchDogs(
   const query = params.toString();
   console.log('Searching dogs with query:', query);
 
-  const res = await fetch(`/dogs/search?${query}`, {
+  const res = await fetch(`${API_BASE}/dogs/search?${query}`, {
     method: 'GET',
     credentials: 'include',
     headers: { Accept: 'application/json' },
@@ -59,7 +60,7 @@ export async function searchDogs(
  * @returns {Promise<Dog[]>}
  */
 export async function getDogs(ids: string[] = []): Promise<Dog[]> {
-  const res = await fetch('/dogs', {
+  const res = await fetch(`${API_BASE}/dogs`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -80,7 +81,7 @@ export async function getDogs(ids: string[] = []): Promise<Dog[]> {
 export async function getMatch(
   ids: string[] = []
 ): Promise<MatchResponse> {
-  const res = await fetch('/dogs/match', {
+  const res = await fetch(`${API_BASE}/dogs/match`, {
     method: 'POST',
     credentials: 'include',
     headers: {
